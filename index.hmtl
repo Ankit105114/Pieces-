@@ -1,1 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Creators Hub</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --background-color: #f5f6fa;
+        }
 
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            font-family: 'Arial', sans-serif;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 2rem;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .interaction-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">3D Creators Hub</div>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#projects">Projects</a>
+            <a href="#collaborate">Collaborate</a>
+            <a href="#profile">Profile</a>
+        </div>
+    </nav>
+
+    <main>
+        <section class="project-grid">
+            <!-- Project Cards will be added here -->
+        </section>
+    </main>
+
+    <script>
+        class Project {
+            constructor(title, author, previewUrl, fileUrl) {
+                this.title = title;
+                this.author = author;
+                this.previewUrl = previewUrl;
+                this.fileUrl = fileUrl;
+                this.likes = 0;
+                this.comments = [];
+            }
+
+            createProjectCard() {
+                const card = document.createElement('div');
+                card.className = 'project-card';
+                card.innerHTML = `
+                    <img src="${this.previewUrl}" alt="${this.title}">
+                    <h3>${this.title}</h3>
+                    <p>By: ${this.author}</p>
+                    <div class="interaction-buttons">
+                        <button onclick="likeProject()">❤️ ${this.likes}</button>
+                        <button onclick="downloadProject()">⬇️ Download</button>
+                        <button onclick="collaborateRequest()">🤝 Collaborate</button>
+                    </div>
+                `;
+                return card;
+            }
+        }
+
+        const projectGrid = document.querySelector('.project-grid');
+
+        function addNewProject(project) {
+            const projectCard = project.createProjectCard();
+            projectGrid.appendChild(projectCard);
+        }
+
+        async function likeProject() {
+            // Implement like functionality
+            console.log('Like clicked');
+        }
+
+        async function downloadProject() {
+            // Implement download functionality
+            console.log('Download clicked');
+        }
+
+        async function collaborateRequest() {
+            // Implement collaboration request
+            console.log('Collaborate clicked');
+        }
+
+        // Example usage
+        window.onload = function() {
+            const exampleProject = new Project(
+                'Cool 3D Model',
+                'John Doe',
+                'https://via.placeholder.com/300',
+                '#'
+            );
+            addNewProject(exampleProject);
+        }
+    </script>
+</body>
+</html>
